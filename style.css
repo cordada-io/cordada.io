@@ -2,9 +2,8 @@ body {
     background-color: rgb(30, 30, 30);
 }
 
-.content {
-    position: relative;
-    display: inline-block;
+#content {
+    position: absolute;
     left: 50%;
     top: 50%;
     -webkit-transform: translate(-50%, -50%);
