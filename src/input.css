@@ -1,0 +1,53 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --color-dark: #141224;
+    --color-light: #e9e7e5;
+    --color-primary: #27d898;
+    --color-red: #ff4d4d;
+    --color-purple: #6767f4;
+    --color-lime: #a8e001;
+  }
+}
+
+@font-face {
+  font-family: 'Uncut Sans';
+  src: url('../fonts/UncutSans-Regular.woff2') format('woff2'),
+       url('../fonts/UncutSans-Regular.woff') format('woff');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Uncut Sans';
+  src: url('../fonts/UncutSans-Medium.woff2') format('woff2'),
+       url('../fonts/UncutSans-Medium.woff') format('woff');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Uncut Sans';
+  src: url('../fonts/UncutSans-Bold.woff2') format('woff2'),
+       url('../fonts/UncutSans-Bold.woff') format('woff');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Cascadia Code';
+  src: url('../fonts/CascadiaCode.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+.link-item {
+  @apply text-light transition-colors font-mono text-lg uppercase;
+}
