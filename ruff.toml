@@ -1,12 +1,12 @@
-target-version = "py312"
 fix = true
 src = ["src"]
+target-version = "py312"
 
 [lint]
-select = ["E", "F", "N", "UP", "I", "PGH", "FAST", "RUF", "ERA", "ARG"]
 extend-select = ["FAST"]
-ignore = ["N805", "N818", "E501", "PGH003", "RUF018"]
+ignore = ["E501", "N805", "N818", "PGH003", "RUF018"]
 preview = true
+select = ["ARG", "E", "ERA", "F", "FAST", "I", "N", "PGH", "RUF", "UP"]
 
 [lint.flake8-quotes]
 docstring-quotes = "single"

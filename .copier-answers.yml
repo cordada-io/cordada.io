@@ -9,4 +9,3 @@ has_terraform: false
 project_name: cordada.io
 project_slug: cordada.io
 python_version: '3.12'
-

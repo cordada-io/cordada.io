@@ -18,7 +18,7 @@ jobs:
     runs-on: self-hosted
     steps:
     - name: Checkout code
-      uses: actions/checkout@v4.1.7
+      uses: actions/checkout@v4.2.2
       with:
         fetch-depth: 0
         submodules: recursive
@@ -50,7 +50,7 @@ jobs:
     runs-on: self-hosted
     steps:
       - name: Checkout code
-        uses: actions/checkout@v4.2.1
+        uses: actions/checkout@v4.2.2
         with:
           fetch-depth: 0
           submodules: recursive
@@ -62,4 +62,3 @@ jobs:
           cache-local-path: ${{ env.UV_CACHE_DIR }}
       - name: Run mypy
         run: uv run mypy --incremental .
-
