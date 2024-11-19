@@ -3,48 +3,66 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link
-      rel="preload"
-      href="../fonts/CascadiaCode.woff2"
-      as="font"
-      type="font/woff2"
-      crossorigin
-    />
-    <link
-      rel="preload"
-      href="../fonts/UncutSans-Regular.woff2"
-      as="font"
-      type="font/woff2"
-      crossorigin
-    />
-    <link
-      rel="preload"
-      href="../fonts/UncutSans-Medium.woff2"
-      as="font"
-      type="font/woff2"
-      crossorigin
-    />
-    <link
-      rel="preload"
-      href="../fonts/UncutSans-Bold.woff2"
-      as="font"
-      type="font/woff2"
-      crossorigin
-    />
+    <link rel="preload" href="../fonts/CascadiaCode.woff2" as="font" type="font/woff2" />
+    <link rel="preload" href="../fonts/UncutSans-Regular.woff2" as="font" type="font/woff2" />
+    <link rel="preload" href="../fonts/UncutSans-Medium.woff2" as="font" type="font/woff2" />
+    <link rel="preload" href="../fonts/UncutSans-Bold.woff2" as="font" type="font/woff2" />
     <link href="./output.css" rel="stylesheet" />
+    <link rel="apple-touch-icon" sizes="180x180" href="./apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="./favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="./favicon-16x16.png" />
+    <link rel="manifest" href="./site.webmanifest" />
+    <link rel="mask-icon" href="./safari-pinned-tab.svg" color="#141224" />
+    <meta name="msapplication-TileColor" content="#141224" />
+    <meta name="theme-color" content="#141224" />
   </head>
   <body class="h-screen bg-dark">
-    <header class="container max-w-screen-md p-16">
+    <header class="container p-16 pb-10">
       <h1 class="font-sans text-4xl font-bold text-light">PROJECTS</h1>
     </header>
-    <footer class="fixed bottom-0 w-full p-8">
+    <main class="container px-16 pb-28 pt-0">
+      <h3 class="font-mono text-xl text-purple">TIMETRACKER.CHAT</h3>
+      <div class="my-2 border-t border-purple"></div>
+      <div class="mt-4 font-sans text-light">
+        <a
+          href="https://timetracker.chat"
+          class="block rounded border border-purple p-4 transition-all hover:border-opacity-80 hover:bg-light/10"
+        >
+          <div class="flex flex-wrap justify-between gap-8 p-4">
+            <img
+              src="./timetracker-icon-text.svg"
+              alt="Timetracker.chat Logo"
+              class="w-full max-w-[400px] flex-1 md:max-w-[500px] lg:max-w-[400px]"
+            />
+            <div class="flex-1">
+              <ul class="list-inside list-disc space-y-4">
+                <h5 class="overflow-auto text-lg">
+                  <strong
+                    >Chat about your day and let the AI handle the time entries for you!</strong
+                  >
+                </h5>
+                <li class="overflow-auto">
+                  A time tracking tool powered by AI that effortlessly records your working hours
+                  through natural conversation.
+                </li>
+                <li class="overflow-auto">
+                  Built with Python, FastAPI, and Large Language Models to make time tracking feel
+                  natural and frictionless.
+                </li>
+              </ul>
+            </div>
+          </div>
+        </a>
+      </div>
+    </main>
+    <footer class="fixed bottom-0 w-full bg-dark p-8">
       <div class="flex items-center justify-between">
         <a href="./index.html">
           <img src="./symbol.svg" alt="Cordada Symbol" class="filter-light w-10" />
         </a>
         <div class="flex gap-8">
-          <a href="./projects.html" class="link-item hover:text-red">PROJECTS</a>
-          <a href="./about.html" class="link-item hover:text-purple">ABOUT</a>
+          <a href="./projects.html" class="link-item hover:text-purple">PROJECTS</a>
+          <a href="./about.html" class="link-item hover:text-red">ABOUT</a>
           <a href="mailto:hello@cordada.io" class="link-item hover:text-lime">CONTACT</a>
         </div>
       </div>
