@@ -1,14 +1,15 @@
 [project]
-name = "cordada-io"
-version = "0.1.0"
-description = "Add your description here"
-readme = "README.md"
-requires-python = ">=3.12"
 dependencies = [
     "pydantic>=2.9.2",
 ]
+description = "Add your description here"
+name = "cordada-io"
+readme = "README.md"
+requires-python = ">=3.12"
+version = "0.1.0"
 
 [tool.uv]
 dev-dependencies = [
     "mypy>=1.13.0",
+    "pyyaml>=6.0.2",
 ]
