@@ -1,0 +1,65 @@
+---
+name: lint
+
+on:
+  pull_request:
+    branches: [main]
+
+env:
+  MYPY_CACHE_DIR: /home/runner/.cache/${{ github.repository }}/mypy
+  PRE_COMMIT_HOME: /home/runner/.cache/pre-commit
+  TFLINT_HOME: /home/runner/.cache/tflint
+  UV_CACHE_DIR: /home/runner/.cache/uv
+  UV_LINK_MODE: copy
+
+jobs:
+  pre-commit:
+    timeout-minutes: 5
+    runs-on: self-hosted
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4.1.7
+      with:
+        fetch-depth: 0
+        submodules: recursive
+        token: ${{ secrets.CORDADA_BOT_PAT }}
+    - name: Install uv
+      uses: astral-sh/setup-uv@v3
+      with:
+        version: latest
+        cache-local-path: ${{ env.UV_CACHE_DIR }}
+
+    - name: Replace SSH key to clone cordada-io@pre-commit-hooks
+      run: |
+        mkdir -p ~/.ssh
+        echo "${{ secrets.PRE_COMMIT_HOOKS_SSH_KEY }}" > ~/.ssh/id_rsa
+        chmod 600 ~/.ssh/id_rsa
+        ssh-keyscan -t rsa github.com > ~/.ssh/known_hosts
+    - name: Install dependencies
+      run: uv sync
+    - name: Run pre-commit
+      run: |
+        SKIP="mypy,github-actions-versions" uv run pre-commit run --from-ref origin/${{ github.event.pull_request.base.ref }} --to-ref ${{ github.event.pull_request.head.sha }}
+    # This one is separated cause we want it to run across all files
+    - name: Check GitHub Actions Versions
+      run: uv run pre-commit run github-actions-versions --all-files
+
+
+  mypy:
+    timeout-minutes: 5
+    runs-on: self-hosted
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4.2.1
+        with:
+          fetch-depth: 0
+          submodules: recursive
+          token: ${{ secrets.CORDADA_BOT_PAT }}
+      - name: Install uv
+        uses: astral-sh/setup-uv@v3
+        with:
+          version: latest
+          cache-local-path: ${{ env.UV_CACHE_DIR }}
+      - name: Run mypy
+        run: uv run mypy --incremental .
+

@@ -1,0 +1,12 @@
+_commit: 2db2c16
+_src_path: git@github.com:cordada-io/egg.git
+has_beancount: false
+has_cord: false
+has_karabiner_deploy: false
+has_python: true
+has_scss: false
+has_terraform: false
+project_name: cordada.io
+project_slug: cordada.io
+python_version: '3.12'
+
