@@ -64,7 +64,7 @@
 }
 
 .filter-light:hover {
-  @apply filter-primary transition-filter;
+  @apply transition-all filter-primary;
 }
 
 .filter-primary {
