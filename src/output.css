@@ -120,13 +120,13 @@
 *,
 ::before,
 ::after {
-  box-sizing: border-box;
-  /* 1 */
-  border-width: 0;
-  /* 2 */
-  border-style: solid;
   /* 2 */
   border-color: #e5e7eb;
+  /* 2 */
+  border-style: solid;
+  /* 1 */
+  border-width: 0;
+  box-sizing: border-box;
   /* 2 */
 }
 
@@ -150,11 +150,6 @@ html,
   line-height: 1.5;
   /* 1 */
   -webkit-text-size-adjust: 100%;
-  /* 2 */
-  -moz-tab-size: 4;
-  /* 3 */
-  -o-tab-size: 4;
-  tab-size: 4;
   /* 3 */
   font-family:
     Uncut Sans,
@@ -164,6 +159,11 @@ html,
   font-feature-settings: normal;
   /* 5 */
   font-variation-settings: normal;
+  /* 2 */
+  -moz-tab-size: 4;
+  /* 3 */
+  -o-tab-size: 4;
+  tab-size: 4;
   /* 6 */
   -webkit-tap-highlight-color: transparent;
   /* 7 */
@@ -175,9 +175,9 @@ html,
 */
 
 body {
-  margin: 0;
   /* 1 */
   line-height: inherit;
+  margin: 0;
   /* 2 */
 }
 
@@ -188,11 +188,11 @@ body {
 */
 
 hr {
-  height: 0;
-  /* 1 */
-  color: inherit;
   /* 2 */
   border-top-width: 1px;
+  /* 1 */
+  color: inherit;
+  height: 0;
   /* 3 */
 }
 
@@ -251,10 +251,10 @@ pre {
   font-family: Cascadia Code;
   /* 1 */
   font-feature-settings: normal;
-  /* 2 */
-  font-variation-settings: normal;
   /* 3 */
   font-size: 1em;
+  /* 2 */
+  font-variation-settings: normal;
   /* 4 */
 }
 
@@ -293,11 +293,11 @@ sup {
 */
 
 table {
-  text-indent: 0;
-  /* 1 */
-  border-color: inherit;
   /* 2 */
   border-collapse: collapse;
+  /* 1 */
+  border-color: inherit;
+  text-indent: 0;
   /* 3 */
 }
 
@@ -312,21 +312,21 @@ input,
 optgroup,
 select,
 textarea {
+  /* 1 */
+  color: inherit;
   font-family: inherit;
   /* 1 */
   font-feature-settings: inherit;
   /* 1 */
-  font-variation-settings: inherit;
-  /* 1 */
   font-size: 100%;
+  /* 1 */
+  font-variation-settings: inherit;
   /* 1 */
   font-weight: inherit;
   /* 1 */
-  line-height: inherit;
-  /* 1 */
   letter-spacing: inherit;
   /* 1 */
-  color: inherit;
+  line-height: inherit;
   /* 1 */
   margin: 0;
   /* 2 */
@@ -493,17 +493,17 @@ textarea {
 
 input::-moz-placeholder,
 textarea::-moz-placeholder {
-  opacity: 1;
   /* 1 */
   color: #9ca3af;
+  opacity: 1;
   /* 2 */
 }
 
 input::placeholder,
 textarea::placeholder {
-  opacity: 1;
   /* 1 */
   color: #9ca3af;
+  opacity: 1;
   /* 2 */
 }
 
@@ -550,8 +550,8 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
 
 img,
 video {
-  max-width: 100%;
   height: auto;
+  max-width: 100%;
 }
 
 /* Make elements with the HTML hidden attribute stay hidden by default */
@@ -657,57 +657,53 @@ video {
 }
 
 @font-face {
+  font-display: swap;
   font-family: 'Uncut Sans';
+
+  font-style: normal;
+
+  font-weight: 400;
 
   src:
     url('../fonts/UncutSans-Regular.woff2') format('woff2'),
     url('../fonts/UncutSans-Regular.woff') format('woff');
-
-  font-weight: 400;
-
-  font-style: normal;
-
-  font-display: swap;
 }
 
 @font-face {
+  font-display: swap;
   font-family: 'Uncut Sans';
+
+  font-style: normal;
+
+  font-weight: 500;
 
   src:
     url('../fonts/UncutSans-Medium.woff2') format('woff2'),
     url('../fonts/UncutSans-Medium.woff') format('woff');
-
-  font-weight: 500;
-
-  font-style: normal;
-
-  font-display: swap;
 }
 
 @font-face {
+  font-display: swap;
   font-family: 'Uncut Sans';
+
+  font-style: normal;
+
+  font-weight: 700;
 
   src:
     url('../fonts/UncutSans-Bold.woff2') format('woff2'),
     url('../fonts/UncutSans-Bold.woff') format('woff');
-
-  font-weight: 700;
-
-  font-style: normal;
-
-  font-display: swap;
 }
 
 @font-face {
+  font-display: swap;
   font-family: 'Cascadia Code';
-
-  src: url('../fonts/CascadiaCode.woff2') format('woff2');
-
-  font-weight: 400;
 
   font-style: normal;
 
-  font-display: swap;
+  font-weight: 400;
+
+  src: url('../fonts/CascadiaCode.woff2') format('woff2');
 }
 
 .link-item {
@@ -717,9 +713,9 @@ video {
   text-transform: uppercase;
   --tw-text-opacity: 1;
   color: rgb(233 231 229 / var(--tw-text-opacity, 1));
+  transition-duration: 150ms;
   transition-property: color, background-color, border-color, text-decoration-color, fill, stroke;
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-  transition-duration: 150ms;
 }
 
 .hover\:text-lime:hover {
