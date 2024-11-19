@@ -619,6 +619,10 @@ video {
   height: 100vh;
 }
 
+.w-10 {
+  width: 2.5rem;
+}
+
 .w-full {
   width: 100%;
 }
@@ -627,20 +631,16 @@ video {
   max-width: 768px;
 }
 
-.max-w-screen-sm {
-  max-width: 640px;
-}
-
 .items-center {
   align-items: center;
 }
 
-.justify-end {
-  justify-content: flex-end;
-}
-
 .justify-center {
   justify-content: center;
+}
+
+.justify-between {
+  justify-content: space-between;
 }
 
 .gap-8 {
@@ -658,6 +658,7 @@ video {
 
 @font-face {
   font-display: swap;
+
   font-family: 'Uncut Sans';
 
   font-style: normal;
@@ -671,6 +672,7 @@ video {
 
 @font-face {
   font-display: swap;
+
   font-family: 'Uncut Sans';
 
   font-style: normal;
@@ -684,6 +686,7 @@ video {
 
 @font-face {
   font-display: swap;
+
   font-family: 'Uncut Sans';
 
   font-style: normal;
@@ -697,6 +700,7 @@ video {
 
 @font-face {
   font-display: swap;
+
   font-family: 'Cascadia Code';
 
   font-style: normal;
@@ -718,6 +722,34 @@ video {
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 }
 
+.filter-dark {
+  filter: invert(6%) sepia(6%) saturate(6439%) hue-rotate(209deg) brightness(101%) contrast(96%);
+}
+
+.filter-light {
+  filter: invert(83%) sepia(21%) saturate(20%) hue-rotate(351deg) brightness(107%) contrast(95%);
+}
+
+.filter-light:hover {
+  filter: invert(97%) sepia(22%) saturate(5581%) hue-rotate(77deg) brightness(96%) contrast(75%);
+}
+
+.filter-primary {
+  filter: invert(97%) sepia(22%) saturate(5581%) hue-rotate(77deg) brightness(96%) contrast(75%);
+}
+
+.filter-red {
+  filter: invert(65%) sepia(54%) saturate(7123%) hue-rotate(329deg) brightness(97%) contrast(106%);
+}
+
+.filter-purple {
+  filter: invert(43%) sepia(76%) saturate(3680%) hue-rotate(225deg) brightness(98%) contrast(95%);
+}
+
+.filter-lime {
+  filter: invert(71%) sepia(75%) saturate(972%) hue-rotate(26deg) brightness(102%) contrast(99%);
+}
+
 .hover\:text-lime:hover {
   --tw-text-opacity: 1;
   color: rgb(168 224 1 / var(--tw-text-opacity, 1));
@@ -731,38 +763,4 @@ video {
 .hover\:text-red:hover {
   --tw-text-opacity: 1;
   color: rgb(255 77 77 / var(--tw-text-opacity, 1));
-}
-
-@media (min-width: 640px) {
-  .sm\:max-w-screen-md {
-    max-width: 768px;
-  }
-
-  .sm\:max-w-screen-lg {
-    max-width: 1024px;
-  }
-}
-
-@media (min-width: 768px) {
-  .md\:hidden {
-    display: none;
-  }
-
-  .md\:max-w-screen-sm {
-    max-width: 640px;
-  }
-
-  .md\:max-w-screen-md {
-    max-width: 768px;
-  }
-}
-
-@media (min-width: 1024px) {
-  .lg\:block {
-    display: block;
-  }
-
-  .lg\:max-w-screen-lg {
-    max-width: 1024px;
-  }
 }
