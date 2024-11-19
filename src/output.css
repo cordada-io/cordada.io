@@ -1,4 +1,6 @@
-*, ::before, ::after {
+*,
+::before,
+::after {
   --tw-border-spacing-x: 0;
   --tw-border-spacing-y: 0;
   --tw-translate-x: 0;
@@ -152,9 +154,12 @@ html,
   -moz-tab-size: 4;
   /* 3 */
   -o-tab-size: 4;
-     tab-size: 4;
+  tab-size: 4;
   /* 3 */
-  font-family: Uncut Sans, system-ui, sans-serif;
+  font-family:
+    Uncut Sans,
+    system-ui,
+    sans-serif;
   /* 4 */
   font-feature-settings: normal;
   /* 5 */
@@ -197,7 +202,7 @@ Add the correct text decoration in Chrome, Edge, and Safari.
 
 abbr:where([title]) {
   -webkit-text-decoration: underline dotted;
-          text-decoration: underline dotted;
+  text-decoration: underline dotted;
 }
 
 /*
@@ -486,7 +491,8 @@ textarea {
 2. Set the default placeholder color to the user's configured gray 400 color.
 */
 
-input::-moz-placeholder, textarea::-moz-placeholder {
+input::-moz-placeholder,
+textarea::-moz-placeholder {
   opacity: 1;
   /* 1 */
   color: #9ca3af;
@@ -506,7 +512,7 @@ Set the default cursor for buttons.
 */
 
 button,
-[role="button"] {
+[role='button'] {
   cursor: pointer;
 }
 
@@ -550,7 +556,7 @@ video {
 
 /* Make elements with the HTML hidden attribute stay hidden by default */
 
-[hidden]:where(:not([hidden="until-found"])) {
+[hidden]:where(:not([hidden='until-found'])) {
   display: none;
 }
 
@@ -653,8 +659,9 @@ video {
 @font-face {
   font-family: 'Uncut Sans';
 
-  src: url('../fonts/UncutSans-Regular.woff2') format('woff2'),
-       url('../fonts/UncutSans-Regular.woff') format('woff');
+  src:
+    url('../fonts/UncutSans-Regular.woff2') format('woff2'),
+    url('../fonts/UncutSans-Regular.woff') format('woff');
 
   font-weight: 400;
 
@@ -666,8 +673,9 @@ video {
 @font-face {
   font-family: 'Uncut Sans';
 
-  src: url('../fonts/UncutSans-Medium.woff2') format('woff2'),
-       url('../fonts/UncutSans-Medium.woff') format('woff');
+  src:
+    url('../fonts/UncutSans-Medium.woff2') format('woff2'),
+    url('../fonts/UncutSans-Medium.woff') format('woff');
 
   font-weight: 500;
 
@@ -679,8 +687,9 @@ video {
 @font-face {
   font-family: 'Uncut Sans';
 
-  src: url('../fonts/UncutSans-Bold.woff2') format('woff2'),
-       url('../fonts/UncutSans-Bold.woff') format('woff');
+  src:
+    url('../fonts/UncutSans-Bold.woff2') format('woff2'),
+    url('../fonts/UncutSans-Bold.woff') format('woff');
 
   font-weight: 700;
 
