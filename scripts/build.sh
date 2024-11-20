@@ -1,16 +1,16 @@
 #!/bin/bash
 
-# Create dist directory if it doesn't exist
-mkdir -p dist
+# Create docs directory if it doesn't exist
+mkdir -p docs
 
 # Copy HTML files
-cp src/*.html dist/
+cp src/*.html docs/
 
 # Copy fonts directory
-cp -r src/fonts dist/
+cp -r src/fonts docs/
 
 # Copy static directory
-cp -r src/static dist/
+cp -r src/static docs/
 
 # Build Tailwind CSS
-npx tailwindcss -i src/input.css -o dist/output.css --minify
+npx tailwindcss -i src/input.css -o docs/output.css --minify
