@@ -467,6 +467,9 @@ video {
 .fill-light {
   fill: #e9e7e5;
 }
+.p-0 {
+  padding: 0;
+}
 .p-4 {
   padding: 1rem;
 }
@@ -640,6 +643,9 @@ video {
   }
   .md\:p-16 {
     padding: 4rem;
+  }
+  .md\:p-4 {
+    padding: 1rem;
   }
   .md\:p-8 {
     padding: 2rem;
