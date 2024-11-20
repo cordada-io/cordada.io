@@ -14,43 +14,71 @@
 }
 
 @font-face {
-  font-family: 'Uncut Sans';
-  src:
-    url('../fonts/UncutSans-Regular.woff2') format('woff2'),
-    url('../fonts/UncutSans-Regular.woff') format('woff');
-  font-weight: 400;
-  font-style: normal;
   font-display: swap;
+  font-family: 'Uncut Sans';
+  font-style: normal;
+  font-weight: 400;
+  src:
+    url('./fonts/UncutSans-Regular.woff2') format('woff2'),
+    url('./fonts/UncutSans-Regular.woff') format('woff');
 }
 
 @font-face {
+  font-display: swap;
   font-family: 'Uncut Sans';
-  src:
-    url('../fonts/UncutSans-Medium.woff2') format('woff2'),
-    url('../fonts/UncutSans-Medium.woff') format('woff');
+  font-style: normal;
   font-weight: 500;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: 'Uncut Sans';
   src:
-    url('../fonts/UncutSans-Bold.woff2') format('woff2'),
-    url('../fonts/UncutSans-Bold.woff') format('woff');
-  font-weight: 700;
-  font-style: normal;
-  font-display: swap;
+    url('./fonts/UncutSans-Medium.woff2') format('woff2'),
+    url('./fonts/UncutSans-Medium.woff') format('woff');
 }
 
 @font-face {
-  font-family: 'Cascadia Code';
-  src: url('../fonts/CascadiaCode.woff2') format('woff2');
-  font-weight: 400;
-  font-style: normal;
   font-display: swap;
+  font-family: 'Uncut Sans';
+  font-style: normal;
+  font-weight: 700;
+  src:
+    url('./fonts/UncutSans-Bold.woff2') format('woff2'),
+    url('./fonts/UncutSans-Bold.woff') format('woff');
+}
+
+@font-face {
+  font-display: swap;
+  font-family: 'Cascadia Code';
+  font-style: normal;
+  font-weight: 400;
+  src: url('./fonts/CascadiaCode.woff2') format('woff2');
 }
 
 .link-item {
   @apply font-mono text-lg uppercase text-light transition-colors;
+}
+
+.filter-dark {
+  filter: invert(6%) sepia(6%) saturate(6439%) hue-rotate(209deg) brightness(101%) contrast(96%);
+}
+
+.filter-light {
+  filter: invert(83%) sepia(21%) saturate(20%) hue-rotate(351deg) brightness(107%) contrast(95%);
+}
+
+.filter-light:hover {
+  @apply transition-all filter-primary;
+}
+
+.filter-primary {
+  filter: invert(97%) sepia(22%) saturate(5581%) hue-rotate(77deg) brightness(96%) contrast(75%);
+}
+
+.filter-red {
+  filter: invert(65%) sepia(54%) saturate(7123%) hue-rotate(329deg) brightness(97%) contrast(106%);
+}
+
+.filter-purple {
+  filter: invert(43%) sepia(76%) saturate(3680%) hue-rotate(225deg) brightness(98%) contrast(95%);
+}
+
+.filter-lime {
+  filter: invert(71%) sepia(75%) saturate(972%) hue-rotate(26deg) brightness(102%) contrast(99%);
 }

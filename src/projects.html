@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <title>Cordada - Projects</title>
+    <link rel="preload" href="./fonts/CascadiaCode.woff2" as="font" type="font/woff2" />
+    <link rel="preload" href="./fonts/UncutSans-Regular.woff2" as="font" type="font/woff2" />
+    <link rel="preload" href="./fonts/UncutSans-Medium.woff2" as="font" type="font/woff2" />
+    <link rel="preload" href="./fonts/UncutSans-Bold.woff2" as="font" type="font/woff2" />
+    <link href="./output.css" rel="stylesheet" />
+    <link rel="apple-touch-icon" sizes="180x180" href="./static/favicons/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="./static/favicons/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="./static/favicons/favicon-16x16.png" />
+    <meta name="theme-color" content="#141224" />
+  </head>
+  <body class="flex min-h-[100dvh] flex-col items-center bg-dark">
+    <header class="container flex p-8 pb-8 md:p-16 md:pb-10">
+      <h1 class="font-sans text-4xl font-bold text-light">PROJECTS</h1>
+    </header>
+    <main class="container px-8 pb-20 pt-0 md:px-16 md:pb-28">
+      <h3 class="font-mono text-xl text-purple">TIMETRACKER.CHAT</h3>
+      <div class="my-2 border-t border-purple"></div>
+      <div class="mt-4 font-sans text-light">
+        <a
+          href="https://timetracker.chat"
+          class="block rounded border border-purple p-4 transition-all hover:border-opacity-80 hover:bg-light/10"
+        >
+          <div>
+            <div class="flex flex-wrap justify-between gap-8 p-0 md:p-4">
+              <img
+                src="./static/svg/timetracker-icon-text.svg"
+                alt="Timetracker.chat Logo"
+                class="w-full max-w-[400px] flex-1 md:max-w-[500px] lg:max-w-[400px]"
+              />
+              <div class="flex-1">
+                <ul class="list-inside list-disc space-y-4">
+                  <h5 class="overflow-auto text-lg">
+                    <strong
+                      >Chat about your day and let the AI handle the time entries for you!</strong
+                    >
+                  </h5>
+                  <li class="overflow-auto">
+                    A time tracking tool powered by AI that effortlessly records your working hours
+                    through natural conversation.
+                  </li>
+                  <li class="overflow-auto">
+                    Built with Python, FastAPI, and Large Language Models to make time tracking feel
+                    natural and frictionless.
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <div class="mt-4 flex items-center justify-center">
+              <span class="font-mono text-purple"> ==> CLICK TO VISIT <== </span>
+            </div>
+          </div>
+        </a>
+      </div>
+    </main>
+    <footer class="fixed bottom-0 flex w-full flex-col items-center bg-dark p-4 md:p-8">
+      <div class="container flex items-center justify-between">
+        <a href="./index.html">
+          <img src="./static/svg/symbol.svg" alt="Cordada Symbol" class="filter-light w-10" />
+        </a>
+        <div class="flex gap-4 md:gap-8">
+          <a href="./projects.html" class="link-item hover:text-purple">PROJECTS</a>
+          <a href="./about.html" class="link-item hover:text-red">ABOUT</a>
+          <a href="mailto:hello@cordada.io" class="link-item hover:text-lime">CONTACT</a>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

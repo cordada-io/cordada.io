@@ -3,11 +3,11 @@ body {
 }
 
 #content {
-  position: absolute;
+  background-color: rgb(30, 30, 30);
+  color: coral;
   left: 50%;
+  position: absolute;
   top: 50%;
   -webkit-transform: translate(-50%, -50%);
   transform: translate(-50%, -50%);
-  background-color: rgb(30, 30, 30);
-  color: coral;
 }
