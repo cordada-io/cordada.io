@@ -19,8 +19,8 @@
   font-style: normal;
   font-weight: 400;
   src:
-    url('../fonts/UncutSans-Regular.woff2') format('woff2'),
-    url('../fonts/UncutSans-Regular.woff') format('woff');
+    url('./fonts/UncutSans-Regular.woff2') format('woff2'),
+    url('./fonts/UncutSans-Regular.woff') format('woff');
 }
 
 @font-face {
@@ -29,8 +29,8 @@
   font-style: normal;
   font-weight: 500;
   src:
-    url('../fonts/UncutSans-Medium.woff2') format('woff2'),
-    url('../fonts/UncutSans-Medium.woff') format('woff');
+    url('./fonts/UncutSans-Medium.woff2') format('woff2'),
+    url('./fonts/UncutSans-Medium.woff') format('woff');
 }
 
 @font-face {
@@ -39,8 +39,8 @@
   font-style: normal;
   font-weight: 700;
   src:
-    url('../fonts/UncutSans-Bold.woff2') format('woff2'),
-    url('../fonts/UncutSans-Bold.woff') format('woff');
+    url('./fonts/UncutSans-Bold.woff2') format('woff2'),
+    url('./fonts/UncutSans-Bold.woff') format('woff');
 }
 
 @font-face {
@@ -48,7 +48,7 @@
   font-family: 'Cascadia Code';
   font-style: normal;
   font-weight: 400;
-  src: url('../fonts/CascadiaCode.woff2') format('woff2');
+  src: url('./fonts/CascadiaCode.woff2') format('woff2');
 }
 
 .link-item {
