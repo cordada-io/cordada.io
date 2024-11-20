@@ -603,14 +603,6 @@ video {
   }
 }
 
-.pointer-events-none {
-  pointer-events: none;
-}
-
-.pointer-events-auto {
-  pointer-events: auto;
-}
-
 .fixed {
   position: fixed;
 }
@@ -642,22 +634,6 @@ video {
 
 .h-5 {
   height: 1.25rem;
-}
-
-.h-screen {
-  height: 100vh;
-}
-
-.h-\[calc\(100vh-theme\(spacing\.32\)\)\] {
-  height: calc(100vh - 8rem);
-}
-
-.h-\[calc\(100vh-theme\(spacing\.28\)\)\] {
-  height: calc(100vh - 7rem);
-}
-
-.h-\[calc\(100vh-theme\(spacing\.20\)\)\] {
-  height: calc(100vh - 5rem);
 }
 
 .h-\[calc\(100vh-theme\(spacing\.16\)\)\] {
@@ -781,10 +757,6 @@ video {
   fill: #e9e7e5;
 }
 
-.p-16 {
-  padding: 4rem;
-}
-
 .p-4 {
   padding: 1rem;
 }
@@ -793,52 +765,21 @@ video {
   padding: 2rem;
 }
 
-.p-1 {
-  padding: 0.25rem;
-}
-
-.p-2 {
-  padding: 0.5rem;
-}
-
-.px-16 {
-  padding-left: 4rem;
-  padding-right: 4rem;
-}
-
-.px-4 {
-  padding-left: 1rem;
-  padding-right: 1rem;
-}
-
-.py-8 {
-  padding-bottom: 2rem;
-  padding-top: 2rem;
-}
-
 .px-8 {
   padding-left: 2rem;
   padding-right: 2rem;
 }
 
-.pb-10 {
-  padding-bottom: 2.5rem;
-}
-
-.pb-28 {
-  padding-bottom: 7rem;
-}
-
-.pt-0 {
-  padding-top: 0px;
+.pb-20 {
+  padding-bottom: 5rem;
 }
 
 .pb-8 {
   padding-bottom: 2rem;
 }
 
-.pb-20 {
-  padding-bottom: 5rem;
+.pt-0 {
+  padding-top: 0px;
 }
 
 .font-mono {
@@ -1044,17 +985,12 @@ video {
     gap: 2rem;
   }
 
-  .md\:p-8 {
-    padding: 2rem;
-  }
-
   .md\:p-16 {
     padding: 4rem;
   }
 
-  .md\:py-8 {
-    padding-bottom: 2rem;
-    padding-top: 2rem;
+  .md\:p-8 {
+    padding: 2rem;
   }
 
   .md\:px-16 {
