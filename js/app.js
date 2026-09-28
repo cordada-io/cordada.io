@@ -819,9 +819,9 @@
 
   /* ---------------- Routing ---------------- */
   const ROUTES = {
-    home: { tab: 0, hash: '#/', render: home, cls: 'home' },
-    projects: { tab: 1, hash: '#/projects', render: projects },
-    contact: { tab: 2, hash: '#/contact', render: contact },
+    home: { hash: '#/', render: home, cls: 'home' },
+    projects: { hash: '#/projects', render: projects },
+    contact: { hash: '#/contact', render: contact },
   };
   const ALIASES = {
     home: [
@@ -928,8 +928,8 @@
     document.title = T().titles[R ? name : 'notFound'];
     document
       .querySelectorAll('.bar nav a')
-      .forEach((a, i) =>
-        R && i === R.tab
+      .forEach((a) =>
+        a.dataset.route === name
           ? a.setAttribute('aria-current', 'page')
           : a.removeAttribute('aria-current')
       );
