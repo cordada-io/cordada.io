@@ -1177,7 +1177,8 @@
   /* ---------------- Status bar ---------------- */
   $('.bar .home').append(symbolSVG());
   $('#snd').addEventListener('click', () => setSound(!Snd.on));
-  if (localStorage.getItem('cordada-sound') === '1') {
+  // Sound is on by default. Browsers keep audio muted until the first click or key press.
+  if (localStorage.getItem('cordada-sound') !== '0') {
     Snd.init();
     Snd.on = true;
     setSound(true);
