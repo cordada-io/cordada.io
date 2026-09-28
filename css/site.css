@@ -492,11 +492,17 @@ body::after {
   fill: var(--green);
 }
 .bar nav {
-  align-items: center;
   color: var(--dim);
-  display: flex;
-  gap: 1ch;
   white-space: nowrap;
+}
+.bar .sep {
+  background: currentColor;
+  display: inline-block;
+  height: 0.75em;
+  margin: 0 0.8ch;
+  opacity: 0.5;
+  vertical-align: -0.12em;
+  width: 1px;
 }
 .bar nav a {
   color: var(--dim);
