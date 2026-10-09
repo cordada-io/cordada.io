@@ -132,6 +132,13 @@
       notFoundCmd: 'comando no encontrado: ',
       notFoundHint: '\nescribe "help" para ver los comandos.',
       langOut: 'idioma: español',
+      fetch: {
+        kernel: 'IA en el centro',
+        theme: 'oscuro [verde]',
+        up: (m, x) => (m ? `${m} min` : `${x} s`),
+      },
+      ropeUp: 'encordándonos…',
+      summit: 'cima. una cordada llega junta.',
     },
     en: {
       htmlLang: 'en',
@@ -213,6 +220,13 @@
       notFoundCmd: 'command not found: ',
       notFoundHint: '\ntype "help" for a list of commands.',
       langOut: 'language: english',
+      fetch: {
+        kernel: 'AI-first',
+        theme: 'dark [green]',
+        up: (m, x) => (m ? `${m} mins` : `${x} secs`),
+      },
+      ropeUp: 'roping up…',
+      summit: 'summit. a rope team gets there together.',
     },
   };
   const qLang = new URLSearchParams(location.search).get('lang');
@@ -962,6 +976,124 @@
     if (target) addLive(target, S.fast || how === 'init' ? false : how === 'cli');
   }
 
+  /* ---------------- Easter eggs: neofetch, climb ---------------- */
+  const ASCII_LOGO = [
+    '          +#+    +#+:',
+    '        +#####++######:',
+    '##########: +####+  ##########',
+    '+++#####:  +###+  :########+++',
+    '   ###:  +###:  :###+  :###:',
+    '+++########:  :###+  :#####+++',
+    '##########: +####+ :##########',
+    '        +#####++#####+',
+    '          +#+    +#+',
+  ].join('\n');
+  function neofetch() {
+    const L = T(),
+      t = Math.floor(performance.now() / 1000);
+    const rows = [
+      ['OS', 'Cordada'],
+      ['Host', 'Mallorca, ES'],
+      ['Kernel', L.fetch.kernel],
+      ['Uptime', L.fetch.up(Math.floor(t / 60), t)],
+      ['Packages', '1 (enrutar)'],
+      ['Shell', 'cordada-sh'],
+      ['Resolution', `${innerWidth}x${innerHeight}`],
+      ['Theme', L.fetch.theme],
+      ['Font', 'Cascadia Code'],
+      ['Contact', link('contact')],
+    ];
+    rows.find((r) => r[0] === 'Contact')[1].textContent = 'hello@cordada.io';
+    const info = h(
+      'div',
+      {},
+      h('div', {}, h('span', { class: 'g' }, 'guest'), '@', h('span', { class: 'g' }, 'cordada')),
+      h('div', { class: 'd' }, '-------------'),
+      rows.map(([k, v]) => h('div', {}, h('span', { class: 'g' }, k), ': ', v)),
+      h(
+        'div',
+        { class: 'swatches' },
+        [C.red, C.green, C.lime, C.purple, C.light].map((c) =>
+          h('span', { style: `background:${c}` })
+        )
+      )
+    );
+    const out = h('div', { class: 'neofetch' }, h('pre', { class: 'ascii' }, ASCII_LOGO), info);
+    Snd.chime();
+    return out;
+  }
+
+  async function climb(parent) {
+    const S = (cur = new Session());
+    const H = 9,
+      P = 14,
+      W = 30,
+      TOP = 3;
+    const pre = h('pre', { class: 'climb' });
+    const cap = h('div', { class: 'd' }, T().ropeUp);
+    const box = h('div', { class: 'line res cli' }, cap, pre);
+    parent.append(box);
+    follow(S, box);
+    const draw = (lead, done) => {
+      const g = Array.from({ length: TOP + H + 1 }, () => Array.from({ length: W }, () => [' ']));
+      const put = (r, c, ch, cls) => {
+        if (r >= 0 && r < g.length && c >= 0 && c < W) g[r][c] = [ch, cls];
+      };
+      for (let r = 0; r < H; r++) {
+        put(TOP + r, P - r, '/', 'm');
+        put(TOP + r, P + 1 + r, '\\', 'm');
+        if (r > 0 && r < 3) for (let c = P - r + 1; c <= P + r; c++) put(TOP + r, c, '·', 'm');
+      }
+      for (let c = 0; c < W; c++) put(TOP + H, c, '‾', 'm');
+      // step s sits left of the slope on row H-1-s; s = H is the summit
+      const at = (s, ch, cls) => {
+        const r = H - 1 - s;
+        put(TOP + r, P - r - 1, ch, cls);
+      };
+      for (let i = 0; i < 5; i++) {
+        const s = lead - i;
+        if (s >= 0) at(s, i % 2 ? '·' : 'o', i % 2 ? 'p' : 'g');
+      }
+      if (done) {
+        put(TOP - 3, P + 1, '|', 'l');
+        put(TOP - 3, P + 2, '>', 'l');
+        put(TOP - 2, P + 1, '|', 'l');
+        put(TOP - 1, P + 1, '|', 'l');
+      }
+      pre.replaceChildren(
+        ...g
+          .map((row, i) => [
+            ...row.map(([ch, cls]) => (cls ? h('span', { class: cls }, ch) : ch)),
+            i < g.length - 1 ? '\n' : '',
+          ])
+          .flat()
+      );
+    };
+    draw(-1, false);
+    await S.wait(500);
+    for (let s = 0; s <= H; s++) {
+      if (S.fast) break;
+      draw(s, false);
+      S.sfx(() => {
+        Snd.key();
+        Snd.blip(60 + PENT[s % 8] + (s >= 8 ? 12 : 0), 0, 0.012);
+      });
+      await S.wait(280);
+    }
+    draw(H, true);
+    S.sfx(() => {
+      Snd.thump(0, 70, 0.3);
+      Snd.pad([57, 64, 69, 73], 0.05, 3.5);
+      Snd.chime();
+    });
+    await S.wait(300);
+    cap.textContent = T().summit;
+    cap.className = 'g';
+    if (S.dead) return;
+    S.done();
+    follow({ fast: false }, addLive(parent, true));
+  }
+
   /* ---------------- ctrl + d: close the session ---------------- */
   let closed = false;
   async function closeSession() {
@@ -1029,6 +1161,9 @@
     'open',
     'history',
     'pwd',
+    'neofetch',
+    'climb',
+    'escalar',
   ];
 
   function addLive(parent, focus) {
@@ -1153,6 +1288,8 @@
     else if (n === 'exit' || n === 'logout')
       out = h('span', { class: 'd' }, T().exit[0], link('contact'), T().exit[1]);
     else if (n === 'ping') out = 'pong';
+    else if (n === 'neofetch') out = neofetch();
+    else if (n === 'climb' || n === 'escalar') return climb(parent);
     else if (n === 'vim' || n === 'emacs' || n === 'nano') out = h('span', { class: 'd' }, T().vim);
     else {
       out = h(
