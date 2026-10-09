@@ -836,6 +836,8 @@
       'cd /',
       'start',
       'inicio',
+      '0',
+      '[0]',
     ],
     projects: [
       'projects',
@@ -850,6 +852,8 @@
       'ls proyectos',
       'cd proyectos',
       'cat proyectos/enrutar/readme.md',
+      '1',
+      '[1]',
     ],
     contact: [
       'contact',
@@ -862,6 +866,8 @@
       'contacto',
       'cd contacto',
       'hola',
+      '2',
+      '[2]',
     ],
   };
   const norm = (s) =>
@@ -1152,7 +1158,7 @@
       }
     }
     const live = $('.live input', screen);
-    const idle = !live || (document.activeElement !== live && !live.value);
+    const idle = !live || !live.value;
     if (idle && /^[0-2]$/.test(e.key)) {
       e.preventDefault();
       navigate(['home', 'projects', 'contact'][+e.key], 'click');
