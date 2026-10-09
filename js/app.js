@@ -64,8 +64,8 @@
       },
       cmds: {
         home: 'cd ~',
-        projects: 'ls proyectos/',
-        readme: 'cat proyectos/enrutar/README.md',
+        projects: 'ls projects/',
+        readme: 'cat projects/enrutar/README.md',
         contact: 'mail hello@cordada.io',
       },
       tagline: 'Software fiable con la IA en el centro',
@@ -111,14 +111,25 @@
       hintHome: 'escribe help, o pulsa 1–2',
       hint: 'escribe help',
       help: [
-        ['proyectos', 'lo que construimos'],
-        ['contacto', 'escríbenos'],
+        ['projects', 'lo que construimos'],
+        ['contact', 'escríbenos'],
         ['open enrutar', 'visitar enrutar.com'],
+        ['neofetch', 'info del sistema'],
+        ['climb', 'subir en cordada'],
         ['lang en|es', 'cambiar idioma'],
         ['sound on|off', 'activar o quitar el sonido'],
         ['cd ..', 'volver atrás'],
         ['clear', 'limpiar la pantalla'],
-        ['ctrl + d', 'cerrar la sesión'],
+      ],
+      keysTitle: 'atajos',
+      keys: [
+        ['1–2', 'ir a una sección'],
+        ['tab', 'completar'],
+        ['↑ ↓', 'historial'],
+        ['ctrl c', 'cancelar'],
+        ['ctrl u', 'borrar la línea'],
+        ['ctrl l', 'limpiar la pantalla'],
+        ['ctrl d', 'cerrar la sesión'],
       ],
       soundOut: (w) => `sonido: ${w ? 'on' : 'off'}`,
       soundBtn: (w) => `sonido ${w ? 'on' : 'off'}`,
@@ -202,11 +213,22 @@
         ['projects', 'what we build'],
         ['contact', 'write to us'],
         ['open enrutar', 'visit enrutar.com'],
+        ['neofetch', 'system info'],
+        ['climb', 'climb as a rope team'],
         ['lang en|es', 'switch language'],
         ['sound on|off', 'toggle sound'],
         ['cd ..', 'go back up'],
         ['clear', 'clear the screen'],
-        ['ctrl + d', 'close the session'],
+      ],
+      keysTitle: 'shortcuts',
+      keys: [
+        ['1–2', 'jump to a section'],
+        ['tab', 'complete'],
+        ['↑ ↓', 'history'],
+        ['ctrl c', 'cancel'],
+        ['ctrl u', 'clear the line'],
+        ['ctrl l', 'clear the screen'],
+        ['ctrl d', 'close the session'],
       ],
       soundOut: (w) => `sound: ${w ? 'on' : 'off'}`,
       soundBtn: (w) => `sound ${w ? 'on' : 'off'}`,
@@ -909,7 +931,8 @@
     return k;
   }
   function link(route) {
-    return h('a', { href: ROUTES[route].hash, 'data-route': route }, T().names[route]);
+    // commands are English in both languages
+    return h('a', { href: ROUTES[route].hash, 'data-route': route }, route);
   }
 
   let navLock = false,
@@ -1145,12 +1168,9 @@
   let hi = 0;
   const CMDS = [
     'help',
-    'ayuda',
     'ls',
     'projects',
-    'proyectos',
     'contact',
-    'contacto',
     'lang',
     'home',
     'clear',
@@ -1163,7 +1183,6 @@
     'pwd',
     'neofetch',
     'climb',
-    'escalar',
   ];
 
   function addLive(parent, focus) {
@@ -1227,6 +1246,21 @@
     return line;
   }
 
+  function setInput(input, v) {
+    input.value = v;
+    input.dispatchEvent(new Event('input'));
+    input.focus({ preventScroll: true });
+  }
+  function cancelLine(line) {
+    const parent = line.parentElement;
+    line.classList.remove('live', 'focus');
+    line.classList.add('cli');
+    line.querySelectorAll('input,.cursor,.hint').forEach((n) => n.remove());
+    line.append(h('span', { class: 'd' }, '^C'));
+    Snd.tick();
+    follow({ fast: false }, addLive(parent, true));
+  }
+
   function exec(raw, line) {
     const parent = line.parentElement,
       text = raw.trim();
@@ -1250,7 +1284,16 @@
       out = h(
         'div',
         { class: 'help' },
-        T().help.flatMap(([k, d]) => [h('span', { class: 'g' }, k), h('span', { class: 'd' }, d)])
+        T().help.flatMap(([k, d]) => [h('span', { class: 'g' }, k), h('span', { class: 'd' }, d)]),
+        h('span', { class: 'keys-title d' }, T().keysTitle),
+        T().keys.flatMap(([k, d]) => [
+          h(
+            'span',
+            {},
+            k.split(' ').map((x) => h('kbd', {}, x))
+          ),
+          h('span', { class: 'd' }, d),
+        ])
       );
     else if (n === 'ls') out = h('span', {}, link('projects'), '/   ', link('contact'));
     else if (n === 'lang' || n === 'idioma') {
@@ -1355,8 +1398,27 @@
     }
     const inField = e.target.matches('input,textarea') && !e.target.closest('.live');
     if (inField || e.metaKey || e.altKey) return;
-    if (e.ctrlKey && e.key.toLowerCase() === 'd') {
-      const input = $('.live input', screen);
+    const input = $('.live input', screen);
+    const key = e.key.toLowerCase();
+    if (e.ctrlKey && key === 'c') {
+      const sel = String(getSelection()) || (input && input.selectionStart !== input.selectionEnd);
+      if (sel) return; // let the browser copy
+      e.preventDefault();
+      if (cur && cur.active) cur.skip();
+      else if (input) cancelLine(input.closest('.live'));
+      return;
+    }
+    if (input && ((e.ctrlKey && key === 'u') || (e.key === 'Escape' && !(cur && cur.active)))) {
+      e.preventDefault();
+      setInput(input, '');
+      return;
+    }
+    if (input && e.ctrlKey && key === 'w') {
+      e.preventDefault();
+      setInput(input, input.value.replace(/\S+\s*$/, ''));
+      return;
+    }
+    if (e.ctrlKey && key === 'd') {
       if (!input || !input.value) {
         e.preventDefault();
         closeSession();
