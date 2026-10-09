@@ -175,6 +175,46 @@ body::after {
   grid-template-columns: max-content 1fr;
 }
 
+.neofetch {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 4ch;
+}
+.neofetch pre,
+.climb {
+  color: var(--green);
+  font: inherit;
+  line-height: 1.2;
+  margin: 0;
+}
+.neofetch pre {
+  padding-top: 4px;
+}
+.swatches {
+  display: flex;
+  margin-top: 10px;
+}
+.swatches span {
+  height: 1.2em;
+  width: 3ch;
+}
+.climb {
+  color: inherit;
+  margin-top: 8px;
+}
+.climb .m {
+  color: var(--dim);
+}
+.climb .g {
+  color: var(--green);
+}
+.climb .p {
+  color: var(--purple);
+}
+.climb .l {
+  color: var(--lime);
+}
+
 /* Live prompt: a real input laid over a mirrored line, so the caret can be a block */
 .live {
   cursor: text;
