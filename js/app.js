@@ -116,7 +116,9 @@
         ['open enrutar', 'visitar enrutar.com'],
         ['lang en|es', 'cambiar idioma'],
         ['sound on|off', 'activar o quitar el sonido'],
+        ['cd ..', 'volver atrás'],
         ['clear', 'limpiar la pantalla'],
+        ['ctrl + d', 'cerrar la sesión'],
       ],
       soundOut: (w) => `sonido: ${w ? 'on' : 'off'}`,
       soundBtn: (w) => `sonido ${w ? 'on' : 'off'}`,
@@ -124,6 +126,8 @@
       sudo: 'guest no está en el archivo sudoers. Se informará de este incidente.',
       rm: 'rm: permiso denegado. Buen intento.',
       exit: ['no hay salida. mejor prueba ', '.'],
+      closed: '[proceso completado]',
+      reopen: 'pulsa cualquier tecla para volver a abrir',
       vim: 'esto es una web. pero respetamos la elección.',
       notFoundCmd: 'comando no encontrado: ',
       notFoundHint: '\nescribe "help" para ver los comandos.',
@@ -193,7 +197,9 @@
         ['open enrutar', 'visit enrutar.com'],
         ['lang en|es', 'switch language'],
         ['sound on|off', 'toggle sound'],
+        ['cd ..', 'go back up'],
         ['clear', 'clear the screen'],
+        ['ctrl + d', 'close the session'],
       ],
       soundOut: (w) => `sound: ${w ? 'on' : 'off'}`,
       soundBtn: (w) => `sound ${w ? 'on' : 'off'}`,
@@ -201,6 +207,8 @@
       sudo: 'guest is not in the sudoers file. This incident will be reported.',
       rm: 'rm: permission denied. Nice try.',
       exit: ['there is no exit. try ', ' instead.'],
+      closed: '[process completed]',
+      reopen: 'press any key to reopen',
       vim: 'this is a website. but we respect the choice.',
       notFoundCmd: 'command not found: ',
       notFoundHint: '\ntype "help" for a list of commands.',
@@ -833,6 +841,7 @@
       'cordada --init',
       'logo',
       'cd ..',
+      '..',
       'cd /',
       'start',
       'inicio',
@@ -894,6 +903,7 @@
   async function navigate(name, how) {
     if (navLock) return;
     navLock = true;
+    closed = false;
     const R = ROUTES[name];
     current = name;
     const command = R ? T().cmds[name] : `cd ${name}`;
@@ -950,6 +960,52 @@
     if (S.dead) return;
     S.done();
     if (target) addLive(target, S.fast || how === 'init' ? false : how === 'cli');
+  }
+
+  /* ---------------- ctrl + d: close the session ---------------- */
+  let closed = false;
+  async function closeSession() {
+    if (closed || navLock) return;
+    closed = true;
+    if (cur) cur.kill();
+    document.body.classList.remove('busy');
+    const live = $('.live', screen);
+    if (live) {
+      live.classList.remove('live', 'focus');
+      live.querySelectorAll('input,.cursor,.hint').forEach((n) => n.remove());
+      $('.typed', live).textContent = '^D';
+    }
+    Snd.out_();
+    const old = $('.page', screen);
+    if (old && !REDUCE)
+      await old.animate(
+        [
+          { opacity: 1, filter: 'none' },
+          { opacity: 0, filter: 'blur(8px)' },
+        ],
+        { duration: 360, delay: 120, easing: 'ease-in', fill: 'forwards' }
+      ).finished;
+    if (old) old.remove();
+    if (!closed) return;
+    const page = h(
+      'div',
+      { class: 'page closed' },
+      h('div', { class: 'line res' }, 'logout'),
+      h('div', { class: 'line res' }, h('span', { class: 'd' }, T().closed)),
+      h(
+        'div',
+        { class: 'line res' },
+        h('span', { class: 'd' }, T().reopen),
+        h('span', { class: 'cursor' })
+      )
+    );
+    screen.append(page);
+    page.animate([{ opacity: 0 }, { opacity: 1 }], { duration: 300 });
+  }
+  function reopen() {
+    bootDone = false;
+    if (location.hash !== '#/') history.pushState(null, '', '#/');
+    navigate('home', 'init');
   }
 
   /* ---------------- Live prompt & commands ---------------- */
@@ -1135,6 +1191,7 @@
   }
 
   /* ---------------- Global input ---------------- */
+  let lastDot = 0;
   document.addEventListener('click', (e) => {
     const a = e.target.closest('a[data-route]');
     if (a && !e.metaKey && !e.ctrlKey && !e.shiftKey) {
@@ -1143,13 +1200,32 @@
     }
   });
   screen.addEventListener('pointerdown', (e) => {
+    if (closed) {
+      e.preventDefault();
+      reopen();
+      return;
+    }
     if (cur && cur.active && !e.target.closest('a')) cur.skip();
     if (e.target.closest('.live')) setTimeout(() => $('.live input', screen)?.focus(), 0);
   });
   document.addEventListener('keydown', (e) => {
     if (Snd.on && Snd.ctx && Snd.ctx.state !== 'running') Snd.ctx.resume();
+    if (closed) {
+      if (['Control', 'Shift', 'Alt', 'Meta'].includes(e.key) || e.metaKey) return;
+      e.preventDefault();
+      reopen();
+      return;
+    }
     const inField = e.target.matches('input,textarea') && !e.target.closest('.live');
     if (inField || e.metaKey || e.altKey) return;
+    if (e.ctrlKey && e.key.toLowerCase() === 'd') {
+      const input = $('.live input', screen);
+      if (!input || !input.value) {
+        e.preventDefault();
+        closeSession();
+        return;
+      }
+    }
     if (cur && cur.active && !e.ctrlKey) {
       cur.skip();
       if (e.key === 'Escape' || e.key === ' ' || e.key === 'Enter') {
@@ -1162,6 +1238,15 @@
     if (idle && /^[0-2]$/.test(e.key)) {
       e.preventDefault();
       navigate(['home', 'projects', 'contact'][+e.key], 'click');
+      return;
+    }
+    // pages without a prompt (contact): typing ".." still goes up a level
+    if (!live && e.key === '.' && !e.ctrlKey && current !== 'home') {
+      const now = Date.now();
+      if (now - lastDot < 800) {
+        lastDot = 0;
+        navigate('home', 'click');
+      } else lastDot = now;
       return;
     }
     if (live && document.activeElement !== live && e.key.length === 1 && !e.ctrlKey) {
