@@ -65,32 +65,54 @@
       cmds: {
         home: 'cd ~',
         projects: 'ls projects/',
-        readme: 'cat projects/enrutar/README.md',
+        readme: (id) => `cat projects/${id}/README.md`,
         contact: 'mail hello@cordada.io',
       },
       tagline: 'Software fiable con la IA en el centro',
       sections: 'Secciones',
       menu: { projects: 'lo que construimos', contact: 'hello@cordada.io' },
-      lsDesc: 'saas de servicios técnicos',
       live: 'en producción',
-      project: 'proyecto 01',
-      metaKind: 'servicios técnicos',
-      lede: 'Planificación inteligente de rutas y gestión de trabajos para profesionales de servicios técnicos.',
-      p1: 'Una plataforma SaaS para electricistas, fontaneros, técnicos de climatización, empresas de limpieza y otros negocios de servicios en campo.',
-      p2: 'Organiza el trabajo en campo con planificación inteligente, comentarios por voz, pedidos de compra y navegación por ubicación.',
+      project: (n) => `proyecto ${String(n).padStart(2, '0')}`,
       features: 'funciones',
-      feats: [
-        'Planificación de rutas con IA',
-        'Citas con clientes por WhatsApp',
-        'Seguimiento de trabajos',
-        'Gestión de clientes',
-        'Comentarios por voz',
-        'Pedidos de compra',
-        'Navegación por ubicación',
-        'Pensado para el móvil',
-      ],
-      open: '==> abrir enrutar.com ↗',
-      imgAlt: 'La app de enrutar',
+      open: (host) => `==> abrir ${host} ↗`,
+      proj: {
+        enrutar: {
+          lsDesc: 'saas de servicios técnicos',
+          metaKind: 'servicios técnicos',
+          lede: 'Planificación inteligente de rutas y gestión de trabajos para profesionales de servicios técnicos.',
+          p1: 'Una plataforma SaaS para electricistas, fontaneros, técnicos de climatización, empresas de limpieza y otros negocios de servicios en campo.',
+          p2: 'Organiza el trabajo en campo con planificación inteligente, comentarios por voz, pedidos de compra y navegación por ubicación.',
+          feats: [
+            'Planificación de rutas con IA',
+            'Citas con clientes por WhatsApp',
+            'Seguimiento de trabajos',
+            'Gestión de clientes',
+            'Comentarios por voz',
+            'Pedidos de compra',
+            'Navegación por ubicación',
+            'Pensado para el móvil',
+          ],
+          imgAlt: 'La app de enrutar',
+        },
+        agendabalears: {
+          lsDesc: 'agenda cultural de baleares',
+          metaKind: 'agenda cultural',
+          lede: 'La agenda de las Islas Baleares: conciertos, teatro, fiestas, exposiciones y mercados de Mallorca, Menorca, Ibiza y Formentera, en un solo sitio.',
+          p1: 'Cada día recogemos las agendas públicas de consells insulares, ayuntamientos y teatros, y cada actividad enlaza a su fuente.',
+          p2: 'En catalán, castellano e inglés, con farmacias de guardia y festivos de cada isla.',
+          feats: [
+            'Actualizada cada día',
+            'Cuatro islas, pueblo a pueblo',
+            'Hoy, mañana y fin de semana',
+            'Mercadillos y fiestas populares',
+            'Farmacias de guardia',
+            'Festivos',
+            'Catalán, castellano e inglés',
+            'Enlace a la fuente oficial',
+          ],
+          imgAlt: 'La web de Agenda Balears',
+        },
+      },
       sayHello: 'Hablemos.',
       contactLede: 'Cuéntanos qué quieres construir. Te respondemos desde Mallorca.',
       to: 'para:',
@@ -114,6 +136,7 @@
         ['projects', 'lo que construimos'],
         ['contact', 'escríbenos'],
         ['open enrutar', 'visitar enrutar.com'],
+        ['open agendabalears', 'visitar agendabalears.com'],
         ['neofetch', 'info del sistema'],
         ['climb', 'subir en cordada'],
         ['lang en|es', 'cambiar idioma'],
@@ -133,7 +156,7 @@
       ],
       soundOut: (w) => `sonido: ${w ? 'on' : 'off'}`,
       soundBtn: (w) => `sonido ${w ? 'on' : 'off'}`,
-      opening: 'abriendo https://enrutar.com …',
+      opening: (url) => `abriendo ${url} …`,
       sudo: 'guest no está en el archivo sudoers. Se informará de este incidente.',
       rm: 'rm: permiso denegado. Buen intento.',
       exit: ['no hay salida. mejor prueba ', '.'],
@@ -164,32 +187,54 @@
       cmds: {
         home: 'cd ~',
         projects: 'ls projects/',
-        readme: 'cat projects/enrutar/README.md',
+        readme: (id) => `cat projects/${id}/README.md`,
         contact: 'mail hello@cordada.io',
       },
       tagline: 'Building AI-first reliable software',
       sections: 'Sections',
       menu: { projects: 'what we build', contact: 'hello@cordada.io' },
-      lsDesc: 'field service saas',
       live: 'live',
-      project: 'project 01',
-      metaKind: 'field service',
-      lede: 'Smart route planning and job management for field service professionals.',
-      p1: 'A SaaS platform for electricians, plumbers, HVAC technicians, cleaning services and other field service businesses.',
-      p2: 'Streamline field operations with smart scheduling, voice-to-text comments, purchase orders and location-based navigation.',
+      project: (n) => `project ${String(n).padStart(2, '0')}`,
       features: 'features',
-      feats: [
-        'AI route planning',
-        'WhatsApp client scheduling',
-        'Job tracking',
-        'Client management',
-        'Voice-to-text comments',
-        'Purchase orders',
-        'Location-based navigation',
-        'Mobile-first interface',
-      ],
-      open: '==> open enrutar.com ↗',
-      imgAlt: 'The enrutar app',
+      open: (host) => `==> open ${host} ↗`,
+      proj: {
+        enrutar: {
+          lsDesc: 'field service saas',
+          metaKind: 'field service',
+          lede: 'Smart route planning and job management for field service professionals.',
+          p1: 'A SaaS platform for electricians, plumbers, HVAC technicians, cleaning services and other field service businesses.',
+          p2: 'Streamline field operations with smart scheduling, voice-to-text comments, purchase orders and location-based navigation.',
+          feats: [
+            'AI route planning',
+            'WhatsApp client scheduling',
+            'Job tracking',
+            'Client management',
+            'Voice-to-text comments',
+            'Purchase orders',
+            'Location-based navigation',
+            'Mobile-first interface',
+          ],
+          imgAlt: 'The enrutar app',
+        },
+        agendabalears: {
+          lsDesc: 'balearic events guide',
+          metaKind: 'events guide',
+          lede: 'The Balearic Islands events guide: concerts, theatre, festivals, exhibitions and markets across Mallorca, Menorca, Ibiza and Formentera, in one place.',
+          p1: 'Every day we collect the public listings of island councils, town halls and theatres, and every event links back to its source.',
+          p2: 'In Catalan, Spanish and English, with on-duty pharmacies and public holidays for each island.',
+          feats: [
+            'Updated daily',
+            'Four islands, town by town',
+            'Today, tomorrow and the weekend',
+            'Markets and local festivals',
+            'On-duty pharmacies',
+            'Public holidays',
+            'Catalan, Spanish and English',
+            'Links to the official source',
+          ],
+          imgAlt: 'The Agenda Balears website',
+        },
+      },
       sayHello: 'Say hello.',
       contactLede: 'Tell us what you want to build. We answer from Mallorca.',
       to: 'to:',
@@ -213,6 +258,7 @@
         ['projects', 'what we build'],
         ['contact', 'write to us'],
         ['open enrutar', 'visit enrutar.com'],
+        ['open agendabalears', 'visit agendabalears.com'],
         ['neofetch', 'system info'],
         ['climb', 'climb as a rope team'],
         ['lang en|es', 'switch language'],
@@ -232,7 +278,7 @@
       ],
       soundOut: (w) => `sound: ${w ? 'on' : 'off'}`,
       soundBtn: (w) => `sound ${w ? 'on' : 'off'}`,
-      opening: 'opening https://enrutar.com …',
+      opening: (url) => `opening ${url} …`,
       sudo: 'guest is not in the sudoers file. This incident will be reported.',
       rm: 'rm: permission denied. Nice try.',
       exit: ['there is no exit. try ', ' instead.'],
@@ -691,90 +737,124 @@
     return col;
   }
 
+  const PROJECTS = [
+    {
+      id: 'enrutar',
+      url: 'https://enrutar.com',
+      host: 'enrutar.com',
+      kind: 'saas',
+      img: 'assets/enrutar.webp',
+    },
+    {
+      id: 'agendabalears',
+      url: 'https://agendabalears.com',
+      host: 'agendabalears.com',
+      kind: 'web',
+      img: 'assets/agendabalears.webp',
+    },
+  ];
+
   async function projects(S, page, { pretyped }) {
     const L = T();
     await cmd(S, page, L.cmds.projects, { pretyped });
     const ls = h(
       'div',
       { class: 'ls out', style: 'margin-bottom:36px' },
-      h('span', { class: 'perm' }, 'drwxr-xr-x'),
-      h('a', { href: 'https://enrutar.com', target: '_blank', rel: 'noopener' }, 'enrutar/'),
-      h('span', { class: 'desc' }, L.lsDesc),
-      h('span', {}, h('span', { style: `color:${C.green}` }, '● '), L.live)
+      PROJECTS.flatMap((p) => [
+        h('span', { class: 'perm' }, 'drwxr-xr-x'),
+        h('a', { href: p.url, target: '_blank', rel: 'noopener' }, p.id + '/'),
+        h('span', { class: 'desc' }, L.proj[p.id].lsDesc),
+        h('span', {}, h('span', { style: `color:${C.green}` }, '● '), L.live),
+      ])
     );
     page.append(ls);
     await reveal(S, [...ls.children], { stagger: 50 });
 
-    await cmd(S, page, L.cmds.readme, { speed: { min: 28, max: 70 } });
-    const label = h('div', { class: 'label' }),
-      title = h('h1', { class: 'title' }),
-      meta = h('div', { class: 'meta' });
-    const scan = h('div', { class: 'scan' }),
-      img = h('img', { src: 'assets/enrutar.webp', alt: L.imgAlt, width: 1026, height: 773 });
-    const shot = h('figure', { class: 'shot', style: 'margin-left:0;margin-right:0' }, img, scan);
-    const prose = h(
-      'div',
-      { class: 'prose' },
-      h('p', { class: 'lede' }, L.lede),
-      h('p', {}, L.p1),
-      h('p', {}, L.p2)
-    );
-    const featLabel = h('div', { class: 'label' });
-    const feats = L.feats;
-    const ul = h(
-      'ul',
-      { class: 'feat' },
-      feats.map((f) => h('li', {}, f))
-    );
-    const go = h(
-      'a',
-      { class: 'go', href: 'https://enrutar.com', target: '_blank', rel: 'noopener' },
-      L.open
-    );
-    const art = h('article', { class: 'out' }, label, title, meta, shot, prose, featLabel, ul, go);
-    page.append(art);
+    for (const [i, p] of PROJECTS.entries()) {
+      const P = L.proj[p.id],
+        n = i + 1;
+      await cmd(S, page, L.cmds.readme(p.id), { speed: { min: 28, max: 70 } });
+      const label = h('div', { class: 'label' }),
+        title = h('h1', { class: 'title' }),
+        meta = h('div', { class: 'meta' });
+      const scan = h('div', { class: 'scan' }),
+        img = h('img', { src: p.img, alt: P.imgAlt, width: 1026, height: 773 });
+      const shot = h('figure', { class: 'shot', style: 'margin-left:0;margin-right:0' }, img, scan);
+      const prose = h(
+        'div',
+        { class: 'prose' },
+        h('p', { class: 'lede' }, P.lede),
+        h('p', {}, P.p1),
+        h('p', {}, P.p2)
+      );
+      const featLabel = h('div', { class: 'label' });
+      const feats = P.feats;
+      const ul = h(
+        'ul',
+        { class: 'feat' },
+        feats.map((f) => h('li', {}, f))
+      );
+      const go = h(
+        'a',
+        { class: 'go', href: p.url, target: '_blank', rel: 'noopener' },
+        L.open(p.host)
+      );
+      const art = h(
+        'article',
+        { class: 'out project' },
+        label,
+        title,
+        meta,
+        shot,
+        prose,
+        featLabel,
+        ul,
+        go
+      );
+      page.append(art);
 
-    [title, meta, shot, prose, featLabel, ul, go].forEach((e) => (e.style.opacity = 0));
-    await scramble(S, label, L.project, 380);
-    title.style.opacity = '';
-    await glitch(S, letters(title, 'enrutar'), { stagger: 55, base: 74 });
-    meta.style.opacity = '';
-    meta.append(h('span', {}), ' · ', h('span', {}), ' · ', h('span', { class: 'live-dot' }));
-    await Promise.all([
-      scramble(S, meta.children[0], 'saas', 300),
-      scramble(S, meta.children[1], L.metaKind, 420),
-      scramble(S, meta.children[2], 'enrutar.com', 420),
-    ]);
+      [title, meta, shot, prose, featLabel, ul, go].forEach((e) => (e.style.opacity = 0));
+      await scramble(S, label, L.project(n), 380);
+      title.style.opacity = '';
+      await glitch(S, letters(title, p.id), { stagger: 55, base: 74 });
+      meta.style.opacity = '';
+      meta.append(h('span', {}), ' · ', h('span', {}), ' · ', h('span', { class: 'live-dot' }));
+      await Promise.all([
+        scramble(S, meta.children[0], p.kind, 300),
+        scramble(S, meta.children[1], P.metaKind, 420),
+        scramble(S, meta.children[2], p.host, 420),
+      ]);
 
-    shot.style.opacity = '';
-    follow(S, shot);
-    S.sfx(() => Snd.scan(1.1));
-    S.anim(
-      img,
-      [
-        { clipPath: 'inset(0 0 100% 0)', filter: 'brightness(1.8) saturate(0)' },
-        { clipPath: 'inset(0 0 0% 0)', filter: 'none' },
-      ],
-      { duration: 1100, easing: 'cubic-bezier(.65,0,.35,1)' }
-    );
-    S.anim(
-      scan,
-      [
-        { top: '0%', opacity: 1 },
-        { top: '100%', opacity: 1, offset: 0.92 },
-        { top: '100%', opacity: 0 },
-      ],
-      { duration: 1200, easing: 'cubic-bezier(.65,0,.35,1)' }
-    );
-    await S.wait(1000);
-    prose.style.opacity = '';
-    await reveal(S, [...prose.children], { stagger: 140 });
-    featLabel.style.opacity = '';
-    await scramble(S, featLabel, L.features, 300);
-    ul.style.opacity = '';
-    await reveal(S, [...ul.children], { stagger: 55 });
-    go.style.opacity = '';
-    await reveal(S, [go]);
+      shot.style.opacity = '';
+      follow(S, shot);
+      S.sfx(() => Snd.scan(1.1));
+      S.anim(
+        img,
+        [
+          { clipPath: 'inset(0 0 100% 0)', filter: 'brightness(1.8) saturate(0)' },
+          { clipPath: 'inset(0 0 0% 0)', filter: 'none' },
+        ],
+        { duration: 1100, easing: 'cubic-bezier(.65,0,.35,1)' }
+      );
+      S.anim(
+        scan,
+        [
+          { top: '0%', opacity: 1 },
+          { top: '100%', opacity: 1, offset: 0.92 },
+          { top: '100%', opacity: 0 },
+        ],
+        { duration: 1200, easing: 'cubic-bezier(.65,0,.35,1)' }
+      );
+      await S.wait(1000);
+      prose.style.opacity = '';
+      await reveal(S, [...prose.children], { stagger: 140 });
+      featLabel.style.opacity = '';
+      await scramble(S, featLabel, L.features, 300);
+      ul.style.opacity = '';
+      await reveal(S, [...ul.children], { stagger: 55 });
+      go.style.opacity = '';
+      await reveal(S, [go]);
+    }
     return page;
   }
 
@@ -892,11 +972,13 @@
       'work',
       'portfolio',
       'cat projects/enrutar/readme.md',
+      'cat projects/agendabalears/readme.md',
       'proyectos',
       'proyecto',
       'ls proyectos',
       'cd proyectos',
       'cat proyectos/enrutar/readme.md',
+      'cat proyectos/agendabalears/readme.md',
       '1',
       '[1]',
     ],
@@ -1019,7 +1101,7 @@
       ['Host', 'Mallorca, ES'],
       ['Kernel', L.fetch.kernel],
       ['Uptime', L.fetch.up(Math.floor(t / 60), t)],
-      ['Packages', '1 (enrutar)'],
+      ['Packages', `${PROJECTS.length} (${PROJECTS.map((p) => p.id).join(', ')})`],
       ['Shell', 'cordada-sh'],
       ['Resolution', `${innerWidth}x${innerHeight}`],
       ['Theme', L.fetch.theme],
@@ -1323,9 +1405,10 @@
     else if (n === 'echo') out = args.join(' ');
     else if (n === 'history')
       out = hist.map((x, i) => `${String(i + 1).padStart(3)}  ${x}`).join('\n');
-    else if (n === 'open' && /enrutar/.test(args.join(' '))) {
-      window.open('https://enrutar.com', '_blank', 'noopener');
-      out = h('span', { class: 'd' }, T().opening);
+    else if (n === 'open' && PROJECTS.some((p) => args.join(' ').includes(p.id))) {
+      const p = PROJECTS.find((x) => args.join(' ').includes(x.id));
+      window.open(p.url, '_blank', 'noopener');
+      out = h('span', { class: 'd' }, T().opening(p.url));
     } else if (n === 'sudo') out = h('span', { class: 'r' }, T().sudo);
     else if (n === 'rm') out = h('span', { class: 'r' }, T().rm);
     else if (n === 'exit' || n === 'logout')
